@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>
+   <class name = "com.project.Ciutat" table = "Ciutat">
+        <id name = "ciutatId" type = "long" column = "ciutatId">
+            <generator class="native"/>
+        </id>
+
+        <property name = "nom" column = "name" type = "string"/>
+        <property name = "pais" column = "pais" type = "string"/>
+        <property name = "poblacio" column = "poblacio" type = "int"/>
+        
+
+
+        <!-- Cascade options can be one or a combination of the following: -->
+        <!-- cascade="all" : Applies all cascade types (save-update, delete, delete-orphan, merge, refresh, replicate, lock, evict) -->
+        <!-- cascade="none" : No operations are cascaded (default) -->
+        <!-- cascade="save-update" : Cascades save and update operations -->
+        <!-- cascade="delete" : Cascades delete operations -->
+        <!-- cascade="delete-orphan" : Deletes child entities when they're removed from the collection -->
+        <!-- cascade="merge" : Cascades merge operations when entities are merged -->
+        <!-- cascade="refresh" : Cascades refresh operations to reload entities from database -->
+        <!-- cascade="replicate" : Cascades replicate operations -->
+        <!-- cascade="lock" : Cascades lock operations -->
+        <!-- cascade="evict" : Cascades evict operations to detach entities from session -->
+        <set name="items" cascade="all">
+            <key column="ciutatId"/>
+            <one-to-many class="com.project.Ciutada"/>
+        </set>
+   </class>
+</hibernate-mapping>
